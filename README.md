@@ -14,6 +14,7 @@ Nota: si al iniciar apache, no termina de arrancar. Podria llegar a ser que apac
 Para ello utilizaremos el IDE tanto sea heidiSQL o el mismo phpmyadmin.
 
 PHPMYADMIN
+
 1.c Dirigirse a la siguiente pagina en nuestro navegador para ingresar a nuestro phpmyadmin.
 
 	http://localhost/phpmyadmin
@@ -26,12 +27,15 @@ Seleccionar el archivo "delilah.sql" donde se encuentra la base de dato a import
 INSTALACION DEL PROYECTO y NODEJS
 
 2.a Para empezar debemos tener instalado NODEJS, ingresando al siguiente link 
+
 	https://nodejs.org/en/download/
+	
 Una vez instalado podremos instalar el proyecto.
 
 2.b Crear una carpeta nueva y llamarla "delilah_api".
 
 2.c Ingresar el siguiente comando de git para clonar los datos de la api, o descargar los datos del github y pasarlos a la carpeta "delilah_api".
+
 	Git clone 
 
 2.d Esto generara una carpeta llamada "app",otra llamada "config", y 3 archivos(server.js,package.json,package-lock.json)
@@ -39,6 +43,7 @@ Una vez instalado podremos instalar el proyecto.
 2.e Abrir la consola del sistema operativo, ubicarse en la carpeta "delilah_api" utilizando el comando cd para navegar en los directorios del SO.
 
 2.f Luego ingresar la siguiente linea para instalar las dependencias necesarias.
+
 	npm install -save express body-parser jsonwebtoken mysql nodemon
  
 Para iniciar el proyecto, debemos tener los modulos apache y mysql prendidos.
