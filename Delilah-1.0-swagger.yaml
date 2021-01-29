@@ -1,0 +1,481 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: delilah api
+  description: 'sistema de venta, usuarios y productos'
+tags:
+  - name: pedidos
+    description: pedidos y lista de productos del pedido enviados por clientes de delilah
+  - name: user
+    description: usuarios registrados, logeo y lista de usuarios de delilah
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/emanuel86/Delilah/1.0
+paths:
+  /register:
+    post:
+      tags:
+      - user
+      summary: crear usuario
+      operationId: registerUser
+      description: agrega un usuario al sistema , una fila por cada usuario
+      responses:
+        "200":
+          description: usuario creado satisfactoriamiente
+          content:
+            application/json:
+              schema:
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/register"
+        description: usuario a agregar
+  /user:
+    get:
+      tags:
+      - user
+      summary: trae todos los usuario
+      operationId: getUser
+      parameters:
+        - in: header
+          name: auth
+          required: true
+          schema:
+            type: string
+      description:  trae todos los usuarios, solo para rol admin
+      responses:
+        "200":
+          description: trae todo los usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/getUser"
+        "404":
+          description: auth es inexistente
+        "403":
+          description: el token.rol debe ser admin, acceso denegado
+  /login:
+    get:
+      tags:
+      - user
+      summary: logeo de usuario
+      operationId: login
+      parameters:
+        - in: header
+          name: usuario
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: password
+          required: true
+          schema:
+            type: string
+      responses: 
+        "200":
+          description: devuelve el usuario actual y toda su informacion encriptado en jsontoken
+          content:
+            application/json:
+              schema:
+                type: string
+  /product:
+    delete:
+      tags:
+      - producto
+      summary: elimina producto
+      operationId: deleteProducto
+      description: borra un producto , necesita un auth con rol admin
+      parameters:
+        - in: header
+          name: delete
+          schema:
+            $ref: "#/components/schemas/deleteProducto"
+      responses:
+        "200":
+          description: producto borrado satisfactoriamente
+        "404":
+          description: auth es inexistente
+        "403":
+          description: el token.rol debe ser admin, acceso denegado
+    put:
+      tags:
+      - producto
+      summary: editar producto
+      operationId: putProducto
+      description: edita un producto, necesita un auth con rol admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putProducto'
+      responses:
+        "200":
+          description: producto editado satisfactoriamente
+        "404":
+          description: auth es inexistente
+        "403":
+          description: el token.rol debe ser admin, acceso denegado
+    post:
+      tags:
+      - producto
+      summary: inserta producto
+      operationId: insertProducto
+      description: producto a agregar, necesita un auth con rol de admin 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/insertProducto'
+      responses:
+        "200":
+          description: producto agregado
+        "404":
+          description: auth es inexistente
+        "403":
+          description: el token.rol debe ser admin, acceso denegado
+    get:
+      tags:
+      - producto
+      summary: trae todos los productos
+      operationId: getProductos
+      parameters: 
+        - in: header
+          name: auth
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: lista de productos 
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/listaProductos"
+        "404":
+          description: auth es inexistente
+  /listOrder:
+    get:
+      tags:
+      - pedidos
+      summary: busca todos los pedidos 
+      operationId: getListOrder
+      parameters:
+        - in: header
+          name: auth
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Devuelve todos los pedidos en orden descendente desde el mas actual al mas antiguo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/getListOrder"
+        "404":
+          description: auth es inexistente
+        "403":
+          description: el token.rol debe ser admin, acceso denegado
+  /order:
+    get:
+      tags:
+      - pedidos
+      summary: busca un pedido
+      operationId: getOrder
+      parameters:
+        - in: header
+          name: idpedido
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+        - in: header
+          name: auth
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Devuelve el pedido y los producto/s del pedido que esten bajo el idpedido enviado.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/getpedido'
+        "404":
+          description: auth es inexistente
+        "403":
+          description: el token.rol debe ser admin, acceso denegado
+    post:
+      tags:
+      - pedidos
+      summary: crea un nuevo pedido
+      operationId: postOrder
+      description: agrega un pedido al sistema y una fila por cada producto para dicho pedido
+      responses:
+        "200":
+          description: producto agregado
+        "404":
+          description: auth es inexistente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pedido'
+        description: pedido a agregar  
+    put:
+      tags:
+      - pedidos
+      summary: hace UPDATE al pedido
+      operationId: putOrder
+      description: actualiza el estado del pedido, mientras el pedido se va desarrollando
+      responses:
+        "200": 
+          description: update realizado
+        "403":
+          description: el token.rol debe ser admin, acceso denegado
+        "404":
+          description: auth es inexistente
+components:
+  schemas:
+    getUser:
+      type: object
+      properties:
+        usuario:
+          type: string
+        nombre:
+          type: string
+        email: 
+          type: string
+        direccion:
+          type: string
+        password:
+          type: string
+        telefono:
+          type: string
+        iduser:
+          type: integer
+        admin:
+          type: integer
+    register:
+      type: object
+      properties:
+        usuario:
+          type: string
+        nombre:
+          type: string
+        email: 
+          type: string
+        direccion:
+          type: string
+        password:
+          type: string
+        telefono:
+          type: string
+      required:
+        - usuario
+        - nombre
+        - email
+        - direccion
+        - password
+        - telefono
+    getpedido:
+      type: object
+      required:
+        - detalles
+          - idpedido
+          - metodo
+          - hora
+          - estado
+          - pago
+          - direccion
+          - nombre
+        - productos
+          - cantidad
+          - nombre_producto
+          - precio
+      properties:
+        detalles:
+          type: object
+          properties:
+            idpedido:
+              type: integer
+              example: 61
+            metodo:
+              type: string
+              example: "efectivo"
+            hora:
+              type: string
+              example: "2020-11-20T16:03:01.000Z"
+            estado: 
+              type: string
+              example: "preparando"
+            pago:
+              type: integer
+              example: 1600
+            direccion:
+              type: string
+              example: "uriarte 1305"
+            nombre:
+              type: string
+              example: "Federico Sanchez"
+        productos:
+          type: object
+          properties:
+            cantidad:
+              type: integer
+              example: 2
+            nombre_producto:
+              type: string
+              example: "Hamburgesa doble queso"
+            precio:
+              type: integer
+              example: 300
+    getListOrder:
+      type: object
+      required:
+        - idpedido
+        - metodo
+        - hora
+        - estado 
+        - pago
+        - usuario
+        - direccion
+        - telefono
+        - nombre
+        - email 
+      properties:
+        idpedido:
+          type: integer
+          example: 35
+        metodo:
+          type: string
+          example: "tarjeta"
+        hora:
+          type: string
+          example: "2020-12-10T15:20:00.000Z"
+        estado:
+          type: string
+          example: "preparando"
+        pago:
+          type: integer
+          example: 560
+        usuario:
+          type: string
+          example: "enrique2021"
+        direccion:
+          type: string
+          example: "uriarte 203"
+        telefono:
+          type: integer
+          example: 154283236
+        nombre: 
+          type: string
+          example: "enrique gomez"
+        email: 
+          type: string
+          example: "enrique@gmail.com"
+    pedido:
+      type: object
+      required:
+        - auth
+        - pago
+        - metodo
+        - list_quantity
+        - list_product
+      properties:
+        auth:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        pago:
+          type: integer
+          example: 300
+          format: int32
+        metodo:
+          type: string
+          example: "enviado"
+        list_quantity:
+          type: array
+          description: representa la cantidad productos
+          example: [2,2,1]
+          items: 
+            type: integer
+        list_product:
+          type: array
+          description: representa el idproduct del indice actual
+          example: [1,2,3]
+          items:
+            type: integer
+    listaProductos:
+      type: object
+      properties:
+        idProducto:
+          type: integer
+          format: int32
+        precio:
+          type: integer
+        nombre_producto:
+          type: string
+        descrition:
+          type: string
+      required: 
+        - idProducto
+        - precio
+        - nombre_producto
+        - description
+    insertProducto:
+      type: object
+      properties:
+        precio:
+          type: integer
+        nombre_producto:
+          type: string
+        descrition:
+          type: string
+        auth:
+          type: string
+      required: 
+        - auth
+        - precio
+        - nombre_producto
+        - description
+    putProducto:
+      type: object
+      properties:
+        precio:
+          type: integer
+        nombre_producto:
+          type: string
+        descrition:
+          type: string
+        auth:
+          type: string
+        idProducto:
+          type: integer
+      required: 
+        - auth
+        - idProducto
+        - precio
+        - nombre_producto
+        - description
+    deleteProducto:
+      type: object
+      properties:
+        auth:
+          type: string
+        idProducto:
+          type: integer
+      required: 
+        - auth
+        - idProducto
