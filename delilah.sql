@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `estado` varchar(50) NOT NULL DEFAULT '1',
   `pago` int(11) NOT NULL,
   PRIMARY KEY (`idpedido`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 -- Volcando estructura para tabla delilah.pedidos_list
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `pedidos_list` (
   `idpedido` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`idlist`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 -- Volcando estructura para tabla delilah.productos
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `nombre_producto` varchar(50) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
   PRIMARY KEY (`idProducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 -- Volcando estructura para tabla delilah.usuarios
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombre` varchar(50) NOT NULL,
   `telefono` int(11) NOT NULL,
   PRIMARY KEY (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

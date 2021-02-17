@@ -1,0 +1,634 @@
+{
+	"variables": [],
+	"info": {
+		"name": "delilah",
+		"_postman_id": "a38e758f-d2b9-0cd3-47f1-1bac892ec28e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/register",
+			"request": {
+				"url": "localhost:3000/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "usuario",
+							"value": "enrique",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "enrique",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "enrique@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "telefono",
+							"value": "123456",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "admin",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/login",
+			"request": {
+				"url": "localhost:3000/login",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "usuario",
+						"value": "enrique",
+						"description": ""
+					},
+					{
+						"key": "password",
+						"value": "test123",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "usuario",
+							"value": "emarc",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "emanuel david",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ema@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "asd 123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "telefono",
+							"value": "4815755",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/order",
+			"request": {
+				"url": "localhost:3000/order",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "auth",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE2LCJ1c3VhcmlvIjoiZW5yaXF1ZSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJlbnJpcXVlQGdtYWlsLmNvbSIsInJvbCI6ImFkbWluIn0sImlhdCI6MTYxMjkyNDM4M30.DB5pN2euedg4PlVhSJekI_5f2-IgcY0joWaQhCmy1L0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "pago",
+							"value": "1650",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "metodo",
+							"value": "tarjeta",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "list_quantity[0]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "list_product[0]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "list_quantity[1]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "list_product[1]",
+							"value": "14",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/order",
+			"request": {
+				"url": "localhost:3000/order",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "auth",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE2LCJ1c3VhcmlvIjoiZW5yaXF1ZSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJlbnJpcXVlQGdtYWlsLmNvbSIsInJvbCI6ImFkbWluIn0sImlhdCI6MTYxMjkyNDM4M30.DB5pN2euedg4PlVhSJekI_5f2-IgcY0joWaQhCmy1L0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "idpedido",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "estado",
+							"value": "entregado",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/listOrder",
+			"request": {
+				"url": "localhost:3000/listOrder",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE2LCJ1c3VhcmlvIjoiZW5yaXF1ZSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJlbnJpcXVlQGdtYWlsLmNvbSIsInJvbCI6ImFkbWluIn0sImlhdCI6MTYxMjkyNDM4M30.DB5pN2euedg4PlVhSJekI_5f2-IgcY0joWaQhCmy1L0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "usuario",
+							"value": "emarc",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "emanuel david",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ema@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "asd 123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "telefono",
+							"value": "4815755",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/order",
+			"request": {
+				"url": "localhost:3000/order",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE4LCJ1c3VhcmlvIjoidXN1YXJpbyIsIm5vbWJyZSI6InVzdWFyaW8iLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsInJvbCI6InVzZXIifSwiaWF0IjoxNjEyOTI2Mjk5fQ.hqBlOp2AtwIphbmlXdDP9xnTJ8MaU1jEmZ-2v0xbE_k",
+						"description": ""
+					},
+					{
+						"key": "idpedido",
+						"value": "1",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "auth",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjUsInVzdWFyaW8iOiJlbnJpcXVlMSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6NDgxNTU1NCwicGFzc3dvcmQiOiIxMjM0NTY3OCIsImRpcmVjY2lvbiI6ImFzZCAxMjMiLCJlbWFpbCI6ImVucmlxdWVAZ21haWwuY29tIiwicm9sIjoidXNlciJ9LCJpYXQiOjE2MTEyNDc1Nzd9.a_2FZFcvnZMGy7Z84nGEl70dZ720tsm026CVP1grMXc",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "idpedido",
+							"value": "109",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "estado",
+							"value": "entregado",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/user",
+			"request": {
+				"url": "localhost:3000/user",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE2LCJ1c3VhcmlvIjoiZW5yaXF1ZSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJlbnJpcXVlQGdtYWlsLmNvbSIsInJvbCI6ImFkbWluIn0sImlhdCI6MTYxMjkyNDM4M30.DB5pN2euedg4PlVhSJekI_5f2-IgcY0joWaQhCmy1L0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "usuario",
+							"value": "emarc",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "emanuel david",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ema@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "asd 123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "telefono",
+							"value": "4815755",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/product",
+			"request": {
+				"url": "localhost:3000/product",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "auth",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE2LCJ1c3VhcmlvIjoiZW5yaXF1ZSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJlbnJpcXVlQGdtYWlsLmNvbSIsInJvbCI6ImFkbWluIn0sImlhdCI6MTYxMjkyNDM4M30.DB5pN2euedg4PlVhSJekI_5f2-IgcY0joWaQhCmy1L0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre_producto",
+							"value": "empanada de queso",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "80",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "empanada de queso con salsa",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/product",
+			"request": {
+				"url": "localhost:3000/product",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "auth",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE2LCJ1c3VhcmlvIjoiZW5yaXF1ZSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJlbnJpcXVlQGdtYWlsLmNvbSIsInJvbCI6ImFkbWluIn0sImlhdCI6MTYxMjkyNDM4M30.DB5pN2euedg4PlVhSJekI_5f2-IgcY0joWaQhCmy1L0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "idproducto",
+							"value": "3",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/product",
+			"request": {
+				"url": "localhost:3000/product",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "auth",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE2LCJ1c3VhcmlvIjoiZW5yaXF1ZSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJlbnJpcXVlQGdtYWlsLmNvbSIsInJvbCI6ImFkbWluIn0sImlhdCI6MTYxMjkyNDM4M30.DB5pN2euedg4PlVhSJekI_5f2-IgcY0joWaQhCmy1L0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre_producto",
+							"value": "empanada de atuncito",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "75",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "empanada de atun con tomate, queso , huevo, salsa .",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "idproducto",
+							"value": "2",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/product",
+			"request": {
+				"url": "localhost:3000/product",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE2LCJ1c3VhcmlvIjoiZW5yaXF1ZSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJlbnJpcXVlQGdtYWlsLmNvbSIsInJvbCI6ImFkbWluIn0sImlhdCI6MTYxMjkyNDM4M30.DB5pN2euedg4PlVhSJekI_5f2-IgcY0joWaQhCmy1L0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "usuario",
+							"value": "emarc",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "emanuel david",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ema@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "asd 123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "telefono",
+							"value": "4815755",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/order",
+			"request": {
+				"url": "localhost:3000/order",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "idpedido",
+						"value": "2",
+						"description": ""
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6eyJpZHVzZXIiOjE2LCJ1c3VhcmlvIjoiZW5yaXF1ZSIsIm5vbWJyZSI6ImVucmlxdWUiLCJ0ZWxlZm9ubyI6MTIzNDU2LCJwYXNzd29yZCI6InRlc3QxMjMiLCJkaXJlY2Npb24iOiJ0ZXN0IiwiZW1haWwiOiJlbnJpcXVlQGdtYWlsLmNvbSIsInJvbCI6ImFkbWluIn0sImlhdCI6MTYxMjkyNDM4M30.DB5pN2euedg4PlVhSJekI_5f2-IgcY0joWaQhCmy1L0",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

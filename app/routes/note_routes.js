@@ -4,7 +4,7 @@ module.exports = function(app,con){
 	  host: "127.0.0.1",/*LOCALHOST siempre es 127.0.0.1*/
 	  user: "root",/*usuario*/
 	  password: "",
-	  database: "delilah1"/*tu base de datos*/
+	  database: "delilah"/*tu base de datos*/
 	});
 
 	const bodyParser = require("body-parser");/*dependencias*/
@@ -36,20 +36,23 @@ module.exports = function(app,con){
 	app.get("/order",(req,res)=>{
 		var idpedido = req.headers.idpedido;
 		var pedido = [];
+		var productos = [];
+		
 
 		if (typeof req.headers.auth != "undefined") {
 			jwt.verify(req.headers.auth,"delilahdemo",(err,token)=>{
 				rol = token.login.rol;
+				iduser = token.login.iduser;
 			})
 		}
 		else{
 			res.sendStatus("404");
 		}
 		if (rol === "admin" || rol === "user") {
-			var query = "SELECT pedidos.idpedido,pedidos.metodo,pedidos.hora,pedidos.estado,pedidos.pago,usuarios.direccion,usuarios.nombre FROM pedidos INNER JOIN usuarios ON usuarios.iduser = pedidos.iduser WHERE pedidos.idpedido = "+mysql.escape(idpedido)+" ORDER BY pedidos.idpedido LIMIT 1";
+			var query = "SELECT pedidos.idpedido,pedidos.metodo,pedidos.hora,pedidos.estado,pedidos.pago,usuarios.direccion,usuarios.nombre FROM pedidos INNER JOIN usuarios ON usuarios.iduser = pedidos.iduser WHERE pedidos.idpedido = "+mysql.escape(idpedido)+" AND pedidos.iduser = "+mysql.escape(iduser)+" ORDER BY pedidos.idpedido LIMIT 1";
 			con.query(query,function(err,result,fields){
 				pedido.push("detalles",result);
-				var stmt = "SELECT pedidos_list.cantidad, productos.nombre_producto,productos.precio FROM pedidos_list INNER JOIN productos ON productos.idproducto = pedidos_list.idproducto WHERE pedidos_list.idpedido = "+mysql.escape(idpedido);
+				var stmt = "SELECT pedidos_list.cantidad, productos.nombre_producto,productos.precio FROM pedidos_list INNER JOIN productos ON productos.idproducto = pedidos_list.idproducto INNER JOIN pedidos ON pedidos.idpedido = pedidos_list.idpedido WHERE pedidos_list.idpedido = "+mysql.escape(idpedido)+" AND pedidos.iduser = "+mysql.escape(iduser);
 				con.query(stmt,function(err,result,fields){
 					pedido.push("productos",result);
 					res.send(pedido);
@@ -138,6 +141,36 @@ module.exports = function(app,con){
 			res.sendStatus("403");
 		}
 	})
+	/*Borrar orden*/
+
+	app.delete("/order",(req,res)=>{
+		if (typeof req.headers.auth !== "undefined") {
+			jwt.verify(req.headers.auth,"delilahdemo",(err,token)=>{
+				rol = token.login.rol;
+			})
+		}
+		else{
+			res.sendStatus("404");
+		}
+		if (rol === "admin") {
+			var idpedido = req.headers.idpedido;
+			var query = "DELETE FROM pedidos WHERE idpedido = "+mysql.escape(idpedido);
+			con.query(query,function(err,result,fields){
+				if(result.affectedRows == 0){
+					res.sendStatus("500");
+				}
+			})
+			var query = "DELETE FROM pedidos_list WHERE idpedido = "+mysql.escape(idpedido);
+			con.query(query,function(err,result,fields){
+			})
+			res.sendStatus("200");
+
+		}
+		else{
+			res.sendStatus("403");
+		}
+	})
+
 	
 	/*CLIENTES*/
 
@@ -150,8 +183,9 @@ module.exports = function(app,con){
 		var email = req.body.email;
 		var nombre = req.body.nombre;
 		var direccion = req.body.direccion;
+		var admin = req.body.admin;
 
-		var query =  "INSERT INTO usuarios (usuario,telefono,password,email,nombre,direccion) VALUE ("+mysql.escape(usuario)+","+mysql.escape(telefono)+","+mysql.escape(password)+","+mysql.escape(email)+","+mysql.escape(nombre)+","+mysql.escape(direccion)+")";
+		var query =  "INSERT INTO usuarios (usuario,telefono,password,email,nombre,direccion,admin) VALUE ("+mysql.escape(usuario)+","+mysql.escape(telefono)+","+mysql.escape(password)+","+mysql.escape(email)+","+mysql.escape(nombre)+","+mysql.escape(direccion)+","+mysql.escape(admin)+")";
 
 		con.query(query,function(err,result,fields){
 		if (err)throw err;

@@ -24,12 +24,12 @@ paths:
         "200":
           description: usuario creado satisfactoriamiente
           content:
-            application/json:
+            application/x-www-form-urlencoded:
               schema:
                 type: string
       requestBody:
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               $ref: "#/components/schemas/register"
         description: usuario a agregar
@@ -50,7 +50,7 @@ paths:
         "200":
           description: trae todo los usuarios
           content:
-            application/json:
+            application/x-www-form-urlencoded:
               schema:
                 type: array
                 items:
@@ -80,7 +80,7 @@ paths:
         "200":
           description: devuelve el usuario actual y toda su informacion encriptado en jsontoken
           content:
-            application/json:
+            application/x-www-form-urlencoded:
               schema:
                 type: string
   /product:
@@ -110,7 +110,7 @@ paths:
       description: edita un producto, necesita un auth con rol admin
       requestBody:
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/putProducto'
       responses:
@@ -128,7 +128,7 @@ paths:
       description: producto a agregar, necesita un auth con rol de admin 
       requestBody:
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/insertProducto'
       responses:
@@ -153,7 +153,7 @@ paths:
         "200":
           description: lista de productos 
           content:
-            application/json:
+            application/x-www-form-urlencoded:
               schema:
                 type: array
                 items:
@@ -176,7 +176,7 @@ paths:
         "200":
           description: Devuelve todos los pedidos en orden descendente desde el mas actual al mas antiguo
           content:
-            application/json:
+            application/x-www-form-urlencoded:
               schema:
                 type: array
                 items:
@@ -206,17 +206,15 @@ paths:
             type: string
       responses:
         "200":
-          description: Devuelve el pedido y los producto/s del pedido que esten bajo el idpedido enviado.
+          description: Devuelve el pedido y los producto/s del pedido que esten bajo el idpedido enviado y para la cuenta actual.
           content:
-            application/json:
+            application/x-www-form-urlencoded:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/getpedido'
         "404":
           description: auth es inexistente
-        "403":
-          description: el token.rol debe ser admin, acceso denegado
     post:
       tags:
       - pedidos
@@ -230,7 +228,7 @@ paths:
           description: auth es inexistente
       requestBody:
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/pedido'
         description: pedido a agregar  
@@ -240,6 +238,19 @@ paths:
       summary: hace UPDATE al pedido
       operationId: putOrder
       description: actualiza el estado del pedido, mientras el pedido se va desarrollando
+      parameters:
+        - in: header
+          name: idpedido
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+        - in: header
+          name: auth
+          required: true
+          schema:
+            type: string
       responses:
         "200": 
           description: update realizado
@@ -247,6 +258,34 @@ paths:
           description: el token.rol debe ser admin, acceso denegado
         "404":
           description: auth es inexistente
+    delete:
+      tags:
+      - pedidos
+      summary: Borra un pedido
+      operationId: deleteOrder
+      description: borra un pedido y los productos de ese pedido
+      parameters:
+        - in: header
+          name: idpedido
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+        - in: header
+          name: auth
+          required: true
+          schema:
+            type: string
+      responses:
+        "200": 
+          description: update realizado
+        "403":
+          description: el token.rol debe ser admin, acceso denegado
+        "404":
+          description: aut
+        "500": 
+          description: idpedido invalido
 components:
   schemas:
     getUser:
@@ -263,7 +302,7 @@ components:
         password:
           type: string
         telefono:
-          type: string
+          type: integer
         iduser:
           type: integer
         admin:
@@ -273,16 +312,25 @@ components:
       properties:
         usuario:
           type: string
+          example: "enrique1"
         nombre:
           type: string
+          example: "enrique"
         email: 
           type: string
+          example: "enrique@gmail.com"
         direccion:
           type: string
+          example: "uriarte 123"
         password:
           type: string
+          example: "123asd"
         telefono:
-          type: string
+          type: integer
+          example: 4123121
+        admin:
+          type: integer
+          example: 0 #0 es user 1 es admin
       required:
         - usuario
         - nombre
@@ -290,6 +338,7 @@ components:
         - direccion
         - password
         - telefono
+        - admin
     getpedido:
       type: object
       required:
